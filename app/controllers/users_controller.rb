@@ -14,7 +14,7 @@ class UsersController < ApplicationController
 
     def ensure_current_user_owns_page
       if current_user.id != @user.id
-        redirect_back fallback_location: root_url, alert: "That's not your feed!"
+        redirect_back fallback_location: root_url, alert: "That's not your page!"
       end
     end
 end
