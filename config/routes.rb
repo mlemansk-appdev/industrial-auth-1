@@ -3,9 +3,9 @@ Rails.application.routes.draw do
 
   devise_for :users
   
-  resources :comments, except: [:index, :show]
-  resources :follow_requests, except: [:index, :show]
-  resources :likes, except: [:index, :show]
+  resources :comments, except: [:index, :show, :new]
+  resources :follow_requests, except: [:index, :show, :new]
+  resources :likes, except: [:index, :show, :new]
   resources :photos, except: [:index, :show]
 
   get ":username" => "users#show", as: :user
