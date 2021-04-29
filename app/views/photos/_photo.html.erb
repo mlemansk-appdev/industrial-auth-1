@@ -31,7 +31,9 @@
     <% end %>
   </ul>
   
-  <div class="card-body">
-    <%= render "comments/form", comment: photo.comments.build %>
-  </div>
+  <% if current_user.leaders.find_by(id: photo.owner_id) != nil || current_user.id ==photo.owner_id || photo.owner.private == false %>
+    <div class="card-body">
+      <%= render "comments/form", comment: photo.comments.build %>
+    </div>
+  <% end %>
 </div>
