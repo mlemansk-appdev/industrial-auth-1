@@ -6,10 +6,12 @@
         active: :exclusive do %>
       
       Posts
-      
-      <span class="badge badge-pill badge-secondary">
-        <%= user.own_photos.count %>
-      </span>
+
+
+        <span class="badge badge-pill badge-secondary">
+          <%= user.own_photos.count %>
+        </span>
+  
     <% end %>
   </li>
 
@@ -20,9 +22,10 @@
 
       Liked
       
-      <span class="badge badge-pill badge-secondary">
-        <%= user.likes.count %>
-      </span>
+     
+        <span class="badge badge-pill badge-secondary">
+            <%= user.likes.count %>
+        </span>
     <% end %>
   </li>
 </ul> 

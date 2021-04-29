@@ -1,5 +1,6 @@
 class LikesController < ApplicationController
   before_action :set_like, only: %i[ show edit update destroy ]
+  before_action :ensure_current_user_is_fan, only: [:destroy, :update, :edit]
 
   # GET /likes or /likes.json
   def index
@@ -65,5 +66,11 @@ class LikesController < ApplicationController
     # Only allow a list of trusted parameters through.
     def like_params
       params.require(:like).permit(:fan_id, :photo_id)
+    end
+
+    def ensure_current_user_is_fan
+      if current_user != @like.fan_id
+        redirect_back fallback_location: root_url, alert: "That's not your like!"
+      end
     end
 end

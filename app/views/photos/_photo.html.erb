@@ -7,12 +7,14 @@
     </h2>
 
     <div>
-      <%= link_to edit_photo_path(photo), class: "btn btn-link btn-sm text-muted" do %>
-        <i class="fas fa-edit fa-fw"></i>
-      <% end %>
+      <% if current_user.id == photo.owner_id %>
+        <%= link_to edit_photo_path(photo), class: "btn btn-link btn-sm text-muted" do %>
+          <i class="fas fa-edit fa-fw"></i>
+        <% end %>
 
-      <%= link_to photo, method: :delete, class: "btn btn-link btn-sm text-muted" do %>
-        <i class="fas fa-trash fa-fw"></i>
+        <%= link_to photo, method: :delete, class: "btn btn-link btn-sm text-muted" do %>
+          <i class="fas fa-trash fa-fw"></i>
+        <% end %>
       <% end %>
     </div>
   </div>
@@ -29,7 +31,9 @@
     <% end %>
   </ul>
   
-  <div class="card-body">
-    <%= render "comments/form", comment: photo.comments.build %>
-  </div>
+  <% if current_user.leaders.find_by(id: photo.owner_id) != nil || current_user.id ==photo.owner_id || photo.owner.private == false %>
+    <div class="card-body">
+      <%= render "comments/form", comment: photo.comments.build %>
+    </div>
+  <% end %>
 </div>
